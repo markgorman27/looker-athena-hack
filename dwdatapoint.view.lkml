@@ -1,6 +1,5 @@
 view: dwdatapoint {
   sql_table_name: metrics_wba_dev.dwdatapoint ;;
-  suggestions: no
 
   dimension: id {
     primary_key: yes
@@ -45,16 +44,11 @@ view: dwdatapoint {
 
   dimension: shift {
     type: string
-    sql: ${TABLE}."shift" ;;
+    sql: ${TABLE}.shift ;;
   }
 
   dimension: unit {
     type: string
     sql: ${TABLE}.unit ;;
-  }
-
-  measure: count {
-    type: count
-    drill_fields: [id, human_name, measure_name]
   }
 }

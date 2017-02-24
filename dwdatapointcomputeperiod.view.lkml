@@ -1,6 +1,11 @@
 view: dwdatapointcomputeperiod {
   sql_table_name: metrics_wba_dev.dwdatapointcomputeperiod ;;
-  suggestions: no
+
+  dimension: primary_key {
+    primary_key: yes
+    hidden: yes
+    sql: ${TABLE}.measure_name || ${TABLE}.computeperiod ;;
+  }
 
   dimension: computeperiod {
     type: string
@@ -10,10 +15,5 @@ view: dwdatapointcomputeperiod {
   dimension: measure_name {
     type: string
     sql: ${TABLE}.measure_name ;;
-  }
-
-  measure: count {
-    type: count
-    drill_fields: [measure_name]
   }
 }

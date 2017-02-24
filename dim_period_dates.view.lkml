@@ -1,66 +1,45 @@
 view: dim_period_dates {
   sql_table_name: metrics_wba_dev.dim_period_dates ;;
-  suggestions: no
 
-  dimension: cadence {
-    type: string
-    sql: ${TABLE}.cadence ;;
-  }
-
-  dimension_group: calendardate {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.calendardate ;;
+  dimension: primary_key {
+    primary_key: yes
+    hidden: yes
+    sql: ${TABLE}.computeperiod || ${TABLE}.toperiod || ${TABLE}.fromperiod || ${TABLE}.period_comparison || ${TABLE}.calendardate || ${TABLE}.cadence;;
   }
 
   dimension: computeperiod {
     type: string
+    hidden: yes
     sql: ${TABLE}.computeperiod ;;
   }
 
-  dimension_group: fromperiod {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
+  dimension: cadence {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.cadence ;;
+  }
+
+  dimension: toperiod {
+    type: date
+    hidden: yes
+    sql: ${TABLE}.toperiod ;;
+  }
+
+  dimension: fromperiod {
+    type: date
+    hidden: yes
     sql: ${TABLE}.fromperiod ;;
   }
 
   dimension: period_comparison {
     type: string
+    hidden: yes
     sql: ${TABLE}.period_comparison ;;
   }
 
-  dimension_group: toperiod {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.toperiod ;;
-  }
-
-  measure: count {
-    type: count
-    drill_fields: []
+  dimension: calendardate {
+    type: date
+    hidden: yes
+    sql: ${TABLE}.calendardate ;;
   }
 }
