@@ -2,6 +2,7 @@
   title: Walgreens IMPROvE
   layout: tile
   tile_size: 1
+  load_configuration: prefetch_cache_run
 
   embed_style:
     show_filters_bar: false
